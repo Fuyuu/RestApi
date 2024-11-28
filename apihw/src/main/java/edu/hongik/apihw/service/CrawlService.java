@@ -1,4 +1,4 @@
-package edu.hongik.apihw.crawl;
+package edu.hongik.apihw.service;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -49,8 +49,8 @@ public class CrawlService {
                 if (parts.length == 3) {
                 String name = parts[0];
                 String email = parts[1];
-                int grad = Integer.parseInt(parts[2].trim());
-                studentList.add(new Students(name, email, degree, grad));
+                int graduation = Integer.parseInt(parts[2].trim());
+                studentList.add(new Students(name, email, degree, graduation));
                 }
                 
             } catch (Exception e) {

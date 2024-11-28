@@ -20,16 +20,16 @@ public class Students {
 	private String name;
 	private String email;
 	private String degree;
-	private int grad;
+	private int graduation;
 	
-	public Students(String name, String email, String degree, int grad) {
+	public Students(String name, String email, String degree, int graduation) {
 		synchronized(lock) {
 			this.sid = idCounter++;
 		}
 		this.name = name;
         this.email = email;
         this.degree = degree;
-        this.grad = grad;
+        this.graduation = graduation;
 	}
 	
 	@Override
@@ -38,7 +38,7 @@ public class Students {
                 "sid=" + sid +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", grad=" + grad +
+                ", graduation=" + graduation +
                 ", degree='" + degree + '\'' +
                 '}';
 	}

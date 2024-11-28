@@ -24,7 +24,7 @@ public class DataInserter {
         	    pstmt.setString(2, student.getName());
         	    pstmt.setString(3, student.getEmail());
         	    pstmt.setString(4, student.getDegree());
-        	    pstmt.setInt(5, student.getGrad());
+        	    pstmt.setInt(5, student.getGraduation());
         	    pstmt.addBatch(); // Batch 추가
         	}
 

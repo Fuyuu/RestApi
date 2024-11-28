@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.hongik.apihw.crawl.CrawlService;
 import edu.hongik.apihw.crawl.DataInserter;
+import edu.hongik.apihw.service.CrawlService;
 
 @RestController
 public class CrawlController {
