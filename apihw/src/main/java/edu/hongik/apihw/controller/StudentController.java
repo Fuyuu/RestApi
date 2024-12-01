@@ -15,7 +15,8 @@ public class StudentController {
 	private StudentService studentService;
 	
 	@GetMapping("/degree")
-	public ResponseEntity<?> getDegreeByName(@RequestParam String name) {
+	public ResponseEntity<String> getDegreeByName(@RequestParam String name) {
+		// 특정 이름을 가진 학생의 학위 유형 질의
 		try {
 			String degree = studentService.getDegreeByName(name);
 			return ResponseEntity.ok(name + " : " + degree);
@@ -25,7 +26,8 @@ public class StudentController {
 	}
 	
 	@GetMapping("/email")
-	public ResponseEntity<?> getEmailByName(@RequestParam String name) {
+	public ResponseEntity<String> getEmailByName(@RequestParam String name) {
+		// 특정 이름을 가진 학생의 이메일 주소 질의
 		try {
 			String email = studentService.getEmailByName(name);
 			return ResponseEntity.ok(name + " : " + email);
@@ -35,7 +37,8 @@ public class StudentController {
 	}
 		
 	@GetMapping("/stat")
-	public ResponseEntity<?> getStudentCountByDegree(@RequestParam String degree) {
+	public ResponseEntity<String> getStudentCountByDegree(@RequestParam String degree) {
+		// 각 학위 별 학생의 수 반환
 		try {
 			int count = studentService.getStudentCountByDegree(degree);
 			return ResponseEntity.ok("Number of " + degree + "'s student : " + count);
@@ -44,9 +47,14 @@ public class StudentController {
 		}
 	}
 	
-	@PostMapping("/register")
-	public ResponseEntity<String> addStudent(@RequestBody Students student) {
-		studentService.addStudent(student);
-		return ResponseEntity.ok("Registraion successful.");
+	@PutMapping("/register")
+	public ResponseEntity<String> registerStudent(@RequestBody Students student) {
+		try {
+			// 신규 학생 등록
+			studentService.registerStudent(student);
+			return ResponseEntity.ok("Registraion successful.");
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+	    }
 	}
 }

@@ -1,10 +1,12 @@
 package edu.hongik.apihw.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import edu.hongik.apihw.crawl.DataInserter;
+import edu.hongik.apihw.entity.Students;
 import edu.hongik.apihw.service.CrawlService;
 
 @RestController
@@ -18,12 +20,12 @@ public class CrawlController {
 
     @GetMapping("/crawl")
     public String crawlAndSave() {
-        // 1. 크롤링 데이터 가져오기
-        var dataList = crawlService.crawlData();
+        // 웹페이지를 크롤링하여 학생 리스트를 생성
+        List<Students> studentList = crawlService.crawlData();
 
-        // 2. 데이터베이스에 저장
-        dataInserter.insertCrawledData(dataList);
+        // 생성한 리스트를 DB에 저장
+        dataInserter.insertCrawledData(studentList);
 
-        return "Crawling and data insertion completed!";
+        return "크롤링과 데이터 삽입을 성공적으로 완료했습니다.";
     }
 }

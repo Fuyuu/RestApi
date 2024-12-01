@@ -13,6 +13,7 @@ import edu.hongik.apihw.config.DatabaseConfig;
 public class StudentRepository {
 
 	public int countByDegree(String degree) {
+		// 각 학위별 학생 수를 출력하는 SQL문
 		String sql = "SELECT COUNT(*) AS count FROM students WHERE degree = ?";
 		int count = 0;
 		
@@ -27,7 +28,7 @@ public class StudentRepository {
 				}
 			}
 		} catch (SQLException e) {
-			throw new RuntimeException("Error counting students: " + e.getMessage());
+			throw new RuntimeException("학생 수 집계 중 오류 발생: " + e.getMessage());
 		}
 		
 		return count;
